@@ -1,19 +1,23 @@
-require('dotenv').config();
-const express = require("express")
-const bodyparser = require("body-parser")
-const PORT = process.env.PORT || 4600
-const event = require("./events/router_event")
+// require('dotenv').config();
+const app = require('./app');
+// const express = require("express");
+// const bodyparser = require("body-parser");
 
-const app = express();
+const PORT = process.env.PORT || 4600;
+// const event = require("./events/router_event");
+const mongo_conn = require('./mongoDB/mongo_conn');
+// const EventModel = require('./model/events.model');
 
-app.use(bodyparser.urlencoded({extended: false}));
+// const app = express();
 
-app.use("/zairza",event);
+// app.use(bodyparser.urlencoded({extended: false}));
 
-require("./mongoDB/mongo_conn");
+// app.use("/zairza",event);
+
+// require("./mongoDB/mongo_conn");
 
 app.listen(PORT, (req,res)=>{
-    console.log("Server Running on: "+PORT);
+    console.log(`Server Running on: Port http://localhost:${PORT}`);
 })
 
 app.get("/", (req,res)=>{
